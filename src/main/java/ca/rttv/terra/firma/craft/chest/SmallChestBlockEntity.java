@@ -2,14 +2,16 @@ package ca.rttv.terra.firma.craft.chest;
 
 import ca.rttv.terra.firma.craft.TFCBlockEntityType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.entity.LockableContainerBlockEntity;
+import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.Inventories;
+import net.minecraft.inventory.Inventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.screen.ScreenHandler;
+import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
@@ -18,7 +20,7 @@ import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
-public class SmallChestBlockEntity extends LockableContainerBlockEntity implements ChestAnimationProgress {
+public class SmallChestBlockEntity extends LootableContainerBlockEntity implements ChestAnimationProgress {
    private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(18, ItemStack.EMPTY);
    
    public SmallChestBlockEntity(BlockPos pos, BlockState state) {
@@ -26,8 +28,13 @@ public class SmallChestBlockEntity extends LockableContainerBlockEntity implemen
    }
    
    @Override
-   public void clear() {
-      this.inventory = DefaultedList.ofSize(18, ItemStack.EMPTY);
+   protected DefaultedList<ItemStack> getInvStackList() {
+      return this.inventory;
+   }
+   
+   @Override
+   protected void setInvStackList(DefaultedList<ItemStack> list) {
+      this.inventory = list;
    }
    
    @Override
@@ -42,7 +49,7 @@ public class SmallChestBlockEntity extends LockableContainerBlockEntity implemen
    
    @Override
    protected ScreenHandler createScreenHandler(int syncId, PlayerInventory playerInventory) {
-      return new SmallChestScreenHandler(syncId, playerInventory);
+      return new SmallChestScreenHandler(syncId, playerInventory, ScreenHandlerContext.create(this.world, this.pos), this);
    }
    
    @Override
@@ -53,44 +60,6 @@ public class SmallChestBlockEntity extends LockableContainerBlockEntity implemen
    @Override
    public int size() {
       return this.inventory.size();
-   }
-   
-   @Override
-   public boolean isEmpty() {
-      return this.inventory.isEmpty();
-   }
-   
-   @Override
-   public ItemStack getStack(int slot) {
-      return this.inventory.get(slot);
-   }
-   
-   @Override
-   public ItemStack removeStack(int slot, int amount) {
-      return Inventories.splitStack(this.inventory, slot, amount);
-   }
-   
-   @Override
-   public ItemStack removeStack(int slot) {
-      return Inventories.removeStack(this.inventory, slot);
-   }
-   
-   @Override
-   public void setStack(int slot, ItemStack stack) {
-      this.inventory.set(slot, stack);
-   }
-   
-   @Override
-   public int getMaxCountPerStack() {
-      return super.getMaxCountPerStack();
-   }
-   
-   @Override
-   public boolean canPlayerUse(PlayerEntity player) {
-      if (this.world.getBlockEntity(this.pos) != this) {
-         return false;
-      }
-      return !(player.squaredDistanceTo((double)this.pos.getX() + 0.5, (double)this.pos.getY() + 0.5, (double)this.pos.getZ() + 0.5) > 64.0);
    }
    
    @Override
@@ -109,11 +78,6 @@ public class SmallChestBlockEntity extends LockableContainerBlockEntity implemen
       }
       
       playSound(this.world, this.pos, this.getCachedState(), SoundEvents.BLOCK_CHEST_CLOSE);
-   }
-   
-   @Override
-   public boolean isValid(int slot, ItemStack stack) {
-      return super.isValid(slot, stack); // todo: item max count system
    }
    
    @Override // write **to** nbtcompound
