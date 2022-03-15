@@ -37,7 +37,7 @@ public class SmallChestScreen extends HandledScreen<SmallChestScreenHandler> {
    @Override
    public void render(MatrixStack matrices, int mouseX, int mouseY, float delta) {
       delta = this.client.getTickDelta();
-      this.drawBackground(matrices, delta, mouseX, mouseY);
+      this.renderBackground(matrices);
       super.render(matrices, mouseX, mouseY, delta);
       this.drawMouseoverTooltip(matrices, mouseX, mouseY);
    }

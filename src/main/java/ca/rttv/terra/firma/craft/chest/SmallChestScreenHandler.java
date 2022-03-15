@@ -34,6 +34,17 @@ public class SmallChestScreenHandler extends ScreenHandler {
       for (int i = 0; i < 9; ++i) {
          this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 125));
       }
+      
+      for (int i = 0; i < 2; i++) {
+         for (int j = 0; j < 9; j++) {
+            this.addSlot(new Slot(this.inventory, (i * 9) + j, 8 + j * 18, 18 + i * 18){
+               @Override
+               public int getMaxItemCount() {
+                  return 32;
+               }
+            });
+         }
+      }
    }
    
    @Override
