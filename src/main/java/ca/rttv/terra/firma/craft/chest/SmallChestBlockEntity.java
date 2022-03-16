@@ -2,6 +2,8 @@ package ca.rttv.terra.firma.craft.chest;
 
 import ca.rttv.terra.firma.craft.TFCBlockEntityType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.entity.BlockEntity;
+import net.minecraft.block.entity.ChestLidAnimator;
 import net.minecraft.block.entity.LootableContainerBlockEntity;
 import net.minecraft.client.block.ChestAnimationProgress;
 import net.minecraft.entity.player.PlayerEntity;
@@ -20,10 +22,15 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
 public class SmallChestBlockEntity extends LootableContainerBlockEntity implements ChestAnimationProgress {
-   private DefaultedList<ItemStack> inventory = DefaultedList.ofSize(18, ItemStack.EMPTY);
+   private       DefaultedList<ItemStack> inventory   = DefaultedList.ofSize(18, ItemStack.EMPTY);
+   private final ChestLidAnimator         lidAnimator = new ChestLidAnimator();
    
    public SmallChestBlockEntity(BlockPos pos, BlockState state) {
       super(TFCBlockEntityType.SMALL_CHEST, pos, state);
+   }
+   
+   public static void clientTick(World world, BlockPos pos, BlockState state, BlockEntity instance) {
+      ((SmallChestBlockEntity) instance).lidAnimator.step();
    }
    
    @Override
@@ -38,7 +45,7 @@ public class SmallChestBlockEntity extends LootableContainerBlockEntity implemen
    
    @Override
    public float getAnimationProgress(float tickDelta) {
-      return 1.0f;
+      return this.lidAnimator.getProgress(tickDelta);
    }
    
    @Override
@@ -68,6 +75,15 @@ public class SmallChestBlockEntity extends LootableContainerBlockEntity implemen
       }
    
       playSound(this.world, this.pos, this.getCachedState(), SoundEvents.BLOCK_CHEST_OPEN);
+   }
+   
+   @Override
+   public boolean onSyncedBlockEvent(int type, int data) {
+      if (type == 1) {
+         this.lidAnimator.setOpen(data > 0);
+         return true;
+      }
+      return super.onSyncedBlockEvent(type, data);
    }
    
    @Override

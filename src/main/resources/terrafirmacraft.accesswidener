@@ -1,6 +1,7 @@
 accessWidener	v1	named
 
-accessible    method    net/minecraft/block/entity/BlockEntityType    create    (Ljava/lang/String;Lnet/minecraft/block/entity/BlockEntityType$Builder;)Lnet/minecraft/block/entity/BlockEntityType;
-accessible    class    net/minecraft/block/entity/BlockEntityType$BlockEntityFactory
-accessible    class    net/minecraft/data/client/BlockStateModelGenerator$BuiltinModelPool
-accessible    method    net/minecraft/block/entity/ChestBlockEntity    playSound    (Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/sound/SoundEvent;)V
+accessible    method    net/minecraft/block/entity/BlockEntityType                               create       (Ljava/lang/String;Lnet/minecraft/block/entity/BlockEntityType$Builder;)Lnet/minecraft/block/entity/BlockEntityType;
+accessible    class     net/minecraft/block/entity/BlockEntityType$BlockEntityFactory
+accessible    class     net/minecraft/data/client/BlockStateModelGenerator$BuiltinModelPool
+accessible    method    net/minecraft/block/entity/ChestBlockEntity                              playSound    (Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/sound/SoundEvent;)V
+accessible    method    net/minecraft/client/render/block/entity/BlockEntityRendererFactories    register     (Lnet/minecraft/block/entity/BlockEntityType;Lnet/minecraft/client/render/block/entity/BlockEntityRendererFactory;)V

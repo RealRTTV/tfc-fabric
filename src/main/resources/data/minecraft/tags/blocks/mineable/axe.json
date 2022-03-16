@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "tfc:wood/chests/oak",
+    "tfc:wood/chests/birch"
+  ]
+}

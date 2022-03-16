@@ -4,6 +4,7 @@
   "package": "ca.rttv.terra.firma.craft.mixin",
   "compatibilityLevel": "JAVA_16",
   "mixins": [
+    "BlockEntityRendererFactoriesMixin",
     "HandledScreensMixin"
   ],
   "injectors": {

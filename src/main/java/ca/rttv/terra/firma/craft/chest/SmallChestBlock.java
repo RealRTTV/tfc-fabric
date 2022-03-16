@@ -5,14 +5,16 @@ import net.minecraft.block.AbstractChestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
 import net.minecraft.block.DoubleBlockProperties.PropertySource;
 import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.enums.ChestType;
+import net.minecraft.block.entity.BlockEntityTicker;
+import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.block.entity.BrewingStandBlockEntity;
+import net.minecraft.block.entity.ChestBlockEntity;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
@@ -29,6 +31,7 @@ import net.minecraft.state.property.Properties;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
+import net.minecraft.util.ItemScatterer;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -36,13 +39,13 @@ import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
+import org.jetbrains.annotations.Nullable;
 
 @SuppressWarnings( "deprecation" )
 public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> implements Waterloggable {
-   
-   public static final    DirectionProperty FACING       = HorizontalFacingBlock.FACING;
-   public static final    BooleanProperty   WATERLOGGED  = Properties.WATERLOGGED;
-   protected static final VoxelShape        SINGLE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
+   private static final    DirectionProperty FACING       = HorizontalFacingBlock.FACING;
+   private static final    BooleanProperty   WATERLOGGED  = Properties.WATERLOGGED;
+   private static final    VoxelShape        SINGLE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
    
    public SmallChestBlock(Settings settings) {
       super(settings, () -> TFCBlockEntityType.SMALL_CHEST);
@@ -55,7 +58,7 @@ public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> i
    }
    
    @Override
-   public PropertySource<? extends net.minecraft.block.entity.ChestBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
+   public PropertySource<? extends ChestBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
       return DoubleBlockProperties.PropertyRetriever::getFallback;
    }
    
@@ -90,6 +93,27 @@ public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> i
       return super.getFluidState(state);
    }
    
+   public BlockEntityType<?> getExpectedEntityType() {
+      return this.entityTypeRetriever.get();
+   }
+   
+   @Override
+   public void onStateReplaced(BlockState state, World world, BlockPos pos, BlockState newState, boolean moved) {
+      if (state.isOf(newState.getBlock())) {
+         return;
+      }
+      BlockEntity blockEntity = world.getBlockEntity(pos);
+      if (blockEntity instanceof SmallChestBlockEntity) {
+         ItemScatterer.spawn(world, pos, (SmallChestBlockEntity)blockEntity);
+      }
+   }
+   
+   @Override
+   @Nullable
+   public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
+      return world.isClient ? SmallChestBlock.checkType(type, this.getExpectedEntityType(), SmallChestBlockEntity::clientTick) : null;
+   }
+   
    @Override
    public BlockRenderType getRenderType(BlockState state) {
       return BlockRenderType.MODEL;
@@ -102,14 +126,13 @@ public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> i
    
    @Override
    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
+      if (world.isClient) {
+         return ActionResult.SUCCESS;
+      }
       
       BlockPos above = pos.up();
       if (world.getBlockState(above).isSolidBlock(world, above)) {
          return ActionResult.success(world.isClient);
-      }
-      
-      if (world.isClient) {
-         return ActionResult.SUCCESS;
       }
       
       player.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerEntity) -> new SmallChestScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos), (Inventory) world.getBlockEntity(pos) /* block entity to inventory is a magic trick */), Text.of("")));
