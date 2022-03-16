@@ -10,7 +10,7 @@ import net.minecraft.util.Identifier;
 
 public class SmallChestScreen extends HandledScreen<SmallChestScreenHandler> {
    
-   public static final Identifier TEXTURE = new Identifier("tfc", "textures/gui/small_chest.png");
+   public static final Identifier TEXTURE = new Identifier("tfc", "textures/gui/chest.png");
    
    public SmallChestScreen(SmallChestScreenHandler handler, PlayerInventory inventory, Text title) {
       super(handler, inventory, title);

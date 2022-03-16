@@ -1,3 +1,4 @@
 {
-  "block.tfc.small_chest": "Small Chest"
+  "block.tfc.wood.chests.oak": "Oak Chest",
+  "block.tfc.wood.chests.birch": "Birch Chest"
 }

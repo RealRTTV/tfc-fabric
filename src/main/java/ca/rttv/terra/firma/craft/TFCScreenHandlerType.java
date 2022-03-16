@@ -8,8 +8,9 @@ import net.minecraft.util.registry.Registry;
 
 public class TFCScreenHandlerType {
    
-   public static final ScreenHandlerType<SmallChestScreenHandler> SMALL_CHEST = register("small_chest", SmallChestScreenHandler::new);
+   public static final ScreenHandlerType<SmallChestScreenHandler> SMALL_CHEST = register("tfc:chest", SmallChestScreenHandler::new);
    
+   @SuppressWarnings( "ResultOfMethodCallIgnored" )
    public static void init() {
       SMALL_CHEST.getClass();
    }

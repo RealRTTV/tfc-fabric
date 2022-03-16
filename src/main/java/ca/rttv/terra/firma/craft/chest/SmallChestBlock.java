@@ -5,15 +5,20 @@ import net.minecraft.block.AbstractChestBlock;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.ChestBlock;
 import net.minecraft.block.DoubleBlockProperties;
 import net.minecraft.block.DoubleBlockProperties.PropertySource;
+import net.minecraft.block.HorizontalFacingBlock;
 import net.minecraft.block.ShapeContext;
 import net.minecraft.block.Waterloggable;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.ChestBlockEntity;
+import net.minecraft.block.enums.ChestType;
 import net.minecraft.entity.mob.PiglinBrain;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.FluidState;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.Inventory;
+import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.SimpleNamedScreenHandlerFactory;
 import net.minecraft.stat.Stats;
@@ -30,10 +35,12 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldAccess;
 
+@SuppressWarnings( "deprecation" )
 public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> implements Waterloggable {
    
-   public static final    DirectionProperty FACING       = Properties.FACING;
+   public static final    DirectionProperty FACING       = HorizontalFacingBlock.FACING;
    public static final    BooleanProperty   WATERLOGGED  = Properties.WATERLOGGED;
    protected static final VoxelShape        SINGLE_SHAPE = Block.createCuboidShape(1.0, 0.0, 1.0, 15.0, 14.0, 15.0);
    
@@ -48,14 +55,39 @@ public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> i
    }
    
    @Override
-   public PropertySource<? extends ChestBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
+   public PropertySource<? extends net.minecraft.block.entity.ChestBlockEntity> getBlockEntitySource(BlockState state, World world, BlockPos pos, boolean ignoreBlocked) {
       return DoubleBlockProperties.PropertyRetriever::getFallback;
    }
    
-   @SuppressWarnings( "deprecation" )
+   @Override
+   public BlockState getPlacementState(ItemPlacementContext ctx) {
+      Direction direction = ctx.getPlayerFacing().getOpposite();
+      FluidState fluidState = ctx.getWorld().getFluidState(ctx.getBlockPos());
+      if (direction.getAxis().isVertical()) {
+         direction = Direction.NORTH;
+      }
+      return this.getDefaultState().with(FACING, direction).with(WATERLOGGED, fluidState.getFluid() == Fluids.WATER);
+   }
+   
    @Override
    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
       return SINGLE_SHAPE;
+   }
+   
+   @Override
+   public BlockState getStateForNeighborUpdate(BlockState state, Direction direction, BlockState neighborState, WorldAccess world, BlockPos pos, BlockPos neighborPos) {
+      if (state.get(WATERLOGGED)) {
+         world.createAndScheduleFluidTick(pos, Fluids.WATER, Fluids.WATER.getTickRate(world));
+      }
+      return super.getStateForNeighborUpdate(state, direction, neighborState, world, pos, neighborPos);
+   }
+   
+   @Override
+   public FluidState getFluidState(BlockState state) {
+      if (state.get(WATERLOGGED)) {
+         return Fluids.WATER.getStill(false);
+      }
+      return super.getFluidState(state);
    }
    
    @Override
@@ -68,7 +100,6 @@ public class SmallChestBlock extends AbstractChestBlock<SmallChestBlockEntity> i
       builder.add(FACING, WATERLOGGED);
    }
    
-   @SuppressWarnings( "deprecation" )
    @Override
    public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
       
