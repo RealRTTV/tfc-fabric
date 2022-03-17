@@ -5,3 +5,4 @@ accessible    class     net/minecraft/block/entity/BlockEntityType$BlockEntityFa
 accessible    class     net/minecraft/data/client/BlockStateModelGenerator$BuiltinModelPool
 accessible    method    net/minecraft/block/entity/ChestBlockEntity                              playSound    (Lnet/minecraft/world/World;Lnet/minecraft/util/math/BlockPos;Lnet/minecraft/block/BlockState;Lnet/minecraft/sound/SoundEvent;)V
 accessible    method    net/minecraft/client/render/block/entity/BlockEntityRendererFactories    register     (Lnet/minecraft/block/entity/BlockEntityType;Lnet/minecraft/client/render/block/entity/BlockEntityRendererFactory;)V
+accessible    field     net/minecraft/block/entity/ChestBlockEntity                              lidAnimator  Lnet/minecraft/block/entity/ChestLidAnimator;

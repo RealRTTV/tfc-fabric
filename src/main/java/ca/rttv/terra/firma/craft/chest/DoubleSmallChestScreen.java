@@ -3,19 +3,18 @@ package ca.rttv.terra.firma.craft.chest;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.ingame.HandledScreen;
 import net.minecraft.client.render.GameRenderer;
-import net.minecraft.client.render.TexturedRenderLayers;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 
-public class SmallChestScreen extends HandledScreen<SmallChestScreenHandler> {
+public class DoubleSmallChestScreen extends HandledScreen<DoubleSmallChestScreenHandler> {
    
-   public static final Identifier TEXTURE = new Identifier("tfc", "textures/gui/chest.png");
+   public static final Identifier TEXTURE = new Identifier("tfc", "textures/gui/double_chest.png");
    
-   public SmallChestScreen(SmallChestScreenHandler handler, PlayerInventory inventory, Text title) {
+   public DoubleSmallChestScreen(DoubleSmallChestScreenHandler handler, PlayerInventory inventory, Text title) {
       super(handler, inventory, title);
-      backgroundHeight = 149;
+      backgroundHeight = 185;
    }
    
    @Override
@@ -26,8 +25,6 @@ public class SmallChestScreen extends HandledScreen<SmallChestScreenHandler> {
       RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
       RenderSystem.setShaderTexture(0, TEXTURE);
       this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
-      RenderSystem.setShaderTexture(0, new Identifier("tfc", "textures/block/wood/chests/normal/acacia.png"));
-      this.drawTexture(matrices, 0, 0, 0, 0, 256, 256);
    }
    
    @Override

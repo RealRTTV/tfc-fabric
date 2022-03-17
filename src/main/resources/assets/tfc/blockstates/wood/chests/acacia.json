@@ -1,0 +1,20 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "tfc:block/wood/chests/acacia",
+      "y": 0
+    },
+    "facing=east": {
+      "model": "tfc:block/wood/chests/acacia",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "tfc:block/wood/chests/acacia",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "tfc:block/wood/chests/acacia",
+      "y": 270
+    }
+  }
+}

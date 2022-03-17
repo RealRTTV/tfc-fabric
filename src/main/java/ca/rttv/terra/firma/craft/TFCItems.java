@@ -9,8 +9,10 @@ import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 
 public class TFCItems {
+   public static final Item ACACIA_CHEST = register(TFCBlocks.ACACIA_CHEST, ItemGroup.DECORATIONS);
    public static final Item OAK_CHEST = register(TFCBlocks.OAK_CHEST, ItemGroup.DECORATIONS);
    public static final Item BIRCH_CHEST = register(TFCBlocks.BIRCH_CHEST, ItemGroup.DECORATIONS);
+   public static final Item SPRUCE_CHEST = register(TFCBlocks.SPRUCE_CHEST, ItemGroup.DECORATIONS);
    
    private static Item register(String id, Item item) {
       return Registry.register(Registry.ITEM, id, item);
@@ -38,7 +40,9 @@ public class TFCItems {
    
    @SuppressWarnings( "ResultOfMethodCallIgnored" )
    public static void init() {
+      ACACIA_CHEST.getClass();
       OAK_CHEST.getClass();
       BIRCH_CHEST.getClass();
+      SPRUCE_CHEST.getClass();
    }
 }

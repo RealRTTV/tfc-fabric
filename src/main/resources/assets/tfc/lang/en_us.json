@@ -1,4 +1,6 @@
 {
+  "block.tfc.wood.chests.acacia": "Acacia Chest",
   "block.tfc.wood.chests.oak": "Oak Chest",
-  "block.tfc.wood.chests.birch": "Birch Chest"
+  "block.tfc.wood.chests.birch": "Birch Chest",
+  "block.tfc.wood.chests.spruce": "Spruce Chest"
 }
