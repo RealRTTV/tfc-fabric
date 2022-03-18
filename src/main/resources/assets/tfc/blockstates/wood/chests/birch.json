@@ -1,19 +1,51 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "tfc:block/wood/chests/birch",
+    "facing=north,type=single": {
+      "model": "tfc:block/wood/chests/normal/birch",
       "y": 0
     },
-    "facing=east": {
-      "model": "tfc:block/wood/chests/birch",
+    "facing=east,type=single": {
+      "model": "tfc:block/wood/chests/normal/birch",
       "y": 90
     },
-    "facing=south": {
-      "model": "tfc:block/wood/chests/birch",
+    "facing=south,type=single": {
+      "model": "tfc:block/wood/chests/normal/birch",
       "y": 180
     },
-    "facing=west": {
-      "model": "tfc:block/wood/chests/birch",
+    "facing=west,type=single": {
+      "model": "tfc:block/wood/chests/normal/birch",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/birch",
+      "y": 0
+    },
+    "facing=east,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/birch",
+      "y": 90
+    },
+    "facing=south,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/birch",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/birch",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/birch",
+      "y": 0
+    },
+    "facing=east,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/birch",
+      "y": 90
+    },
+    "facing=south,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/birch",
+      "y": 180
+    },
+    "facing=west,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/birch",
       "y": 270
     }
   }

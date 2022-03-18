@@ -12,7 +12,7 @@ import net.minecraft.screen.slot.Slot;
 
 public class SmallChestScreenHandler extends ScreenHandler {
    private final ScreenHandlerContext context;
-   private final Inventory inventory;
+   public final Inventory inventory;
    
    public SmallChestScreenHandler(int syncId, PlayerInventory inventory) {
       this(syncId, inventory, ScreenHandlerContext.EMPTY);

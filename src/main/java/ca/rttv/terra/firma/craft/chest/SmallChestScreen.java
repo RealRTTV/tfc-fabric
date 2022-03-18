@@ -26,8 +26,6 @@ public class SmallChestScreen extends HandledScreen<SmallChestScreenHandler> {
       RenderSystem.setShaderColor(1.0f, 1.0f, 1.0f, 1.0f);
       RenderSystem.setShaderTexture(0, TEXTURE);
       this.drawTexture(matrices, i, j, 0, 0, this.backgroundWidth, this.backgroundHeight);
-      RenderSystem.setShaderTexture(0, new Identifier("tfc", "textures/block/wood/chests/normal/acacia.png"));
-      this.drawTexture(matrices, 0, 0, 0, 0, 256, 256);
    }
    
    @Override

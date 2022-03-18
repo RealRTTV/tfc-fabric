@@ -9,13 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.screen.ScreenHandler;
 import net.minecraft.screen.ScreenHandlerContext;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.math.BlockPos;
 
 public class DoubleSmallChestScreenHandler extends ScreenHandler {
-   private final ScreenHandlerContext context;
-   private final Inventory            inventory;
+   public final Inventory            inventory;
    
    public DoubleSmallChestScreenHandler(int syncId, PlayerInventory inventory) {
-      this(syncId, inventory, ScreenHandlerContext.EMPTY);
+      this(syncId, inventory, ScreenHandlerContext.create(inventory.player.getWorld(), new BlockPos(inventory.player.raycast(inventory.player.isCreative() ? 5.0d : 4.0d, 0, false).getPos())));
    }
    
    public DoubleSmallChestScreenHandler(int syncId, PlayerInventory inventory, ScreenHandlerContext context) {
@@ -24,7 +24,6 @@ public class DoubleSmallChestScreenHandler extends ScreenHandler {
    
    public DoubleSmallChestScreenHandler(int syncId, PlayerInventory playerInventory, ScreenHandlerContext context, Inventory inventory) {
       super(TFCScreenHandlerType.DOUBLE_SMALL_CHEST, syncId);
-      this.context = context;
       this.inventory = inventory;
       inventory.onOpen(playerInventory.player);
       for (int i = 0; i < 3; ++i) {

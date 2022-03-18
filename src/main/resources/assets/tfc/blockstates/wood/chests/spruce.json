@@ -1,19 +1,51 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "tfc:block/wood/chests/spruce",
+    "facing=north,type=single": {
+      "model": "tfc:block/wood/chests/normal/spruce",
       "y": 0
     },
-    "facing=east": {
-      "model": "tfc:block/wood/chests/spruce",
+    "facing=east,type=single": {
+      "model": "tfc:block/wood/chests/normal/spruce",
       "y": 90
     },
-    "facing=south": {
-      "model": "tfc:block/wood/chests/spruce",
+    "facing=south,type=single": {
+      "model": "tfc:block/wood/chests/normal/spruce",
       "y": 180
     },
-    "facing=west": {
-      "model": "tfc:block/wood/chests/spruce",
+    "facing=west,type=single": {
+      "model": "tfc:block/wood/chests/normal/spruce",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/spruce",
+      "y": 0
+    },
+    "facing=east,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/spruce",
+      "y": 90
+    },
+    "facing=south,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/spruce",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/spruce",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/spruce",
+      "y": 0
+    },
+    "facing=east,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/spruce",
+      "y": 90
+    },
+    "facing=south,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/spruce",
+      "y": 180
+    },
+    "facing=west,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/spruce",
       "y": 270
     }
   }

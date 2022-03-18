@@ -5,7 +5,6 @@
   "compatibilityLevel": "JAVA_16",
   "mixins": [
     "BlockEntityRendererFactoriesMixin",
-    "BlockStateModelGeneratorMixin",
     "HandledScreensMixin",
     "TexturedRenderLayersMixin"
   ],

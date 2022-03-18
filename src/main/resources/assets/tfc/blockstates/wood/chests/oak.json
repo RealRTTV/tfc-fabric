@@ -1,20 +1,52 @@
 {
   "variants": {
-    "facing=north": {
-    "model": "tfc:block/wood/chests/oak",
-    "y": 0
-  },
-  "facing=east": {
-    "model": "tfc:block/wood/chests/oak",
-    "y": 90
-  },
-  "facing=south": {
-    "model": "tfc:block/wood/chests/oak",
-    "y": 180
-  },
-  "facing=west": {
-    "model": "tfc:block/wood/chests/oak",
-    "y": 270
-  }
+    "facing=north,type=single": {
+      "model": "tfc:block/wood/chests/normal/oak",
+      "y": 0
+    },
+    "facing=east,type=single": {
+      "model": "tfc:block/wood/chests/normal/oak",
+      "y": 90
+    },
+    "facing=south,type=single": {
+      "model": "tfc:block/wood/chests/normal/oak",
+      "y": 180
+    },
+    "facing=west,type=single": {
+      "model": "tfc:block/wood/chests/normal/oak",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/oak",
+      "y": 0
+    },
+    "facing=east,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/oak",
+      "y": 90
+    },
+    "facing=south,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/oak",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/oak",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/oak",
+      "y": 0
+    },
+    "facing=east,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/oak",
+      "y": 90
+    },
+    "facing=south,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/oak",
+      "y": 180
+    },
+    "facing=west,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/oak",
+      "y": 270
+    }
   }
 }

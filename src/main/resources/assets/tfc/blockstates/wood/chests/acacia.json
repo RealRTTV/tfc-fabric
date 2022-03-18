@@ -1,19 +1,51 @@
 {
   "variants": {
-    "facing=north": {
-      "model": "tfc:block/wood/chests/acacia",
+    "facing=north,type=single": {
+      "model": "tfc:block/wood/chests/normal/acacia",
       "y": 0
     },
-    "facing=east": {
-      "model": "tfc:block/wood/chests/acacia",
+    "facing=east,type=single": {
+      "model": "tfc:block/wood/chests/normal/acacia",
       "y": 90
     },
-    "facing=south": {
-      "model": "tfc:block/wood/chests/acacia",
+    "facing=south,type=single": {
+      "model": "tfc:block/wood/chests/normal/acacia",
       "y": 180
     },
-    "facing=west": {
-      "model": "tfc:block/wood/chests/acacia",
+    "facing=west,type=single": {
+      "model": "tfc:block/wood/chests/normal/acacia",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/acacia",
+      "y": 0
+    },
+    "facing=east,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/acacia",
+      "y": 90
+    },
+    "facing=south,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/acacia",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/acacia",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/acacia",
+      "y": 0
+    },
+    "facing=east,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/acacia",
+      "y": 90
+    },
+    "facing=south,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/acacia",
+      "y": 180
+    },
+    "facing=west,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/acacia",
       "y": 270
     }
   }

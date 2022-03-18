@@ -77,7 +77,6 @@ public class SmallChestBlock extends ChestBlock implements Waterloggable {
       }
    };
    
-   
    public SmallChestBlock(Settings settings, String woodType) {
       super(settings, () -> TFCBlockEntityType.SMALL_CHEST);
       this.woodType = woodType;
@@ -101,7 +100,7 @@ public class SmallChestBlock extends ChestBlock implements Waterloggable {
    @Override
    @Nullable
    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(World world, BlockState state, BlockEntityType<T> type) {
-      return world.isClient ? checkType(type, TFCBlockEntityType.SMALL_CHEST, SmallChestBlockEntity::clientTick) : null;
+      return world.isClient ? checkType(type, TFCBlockEntityType.SMALL_CHEST, (world1, pos, state1, blockEntity) -> blockEntity.onClientTick(world1, pos, state1)) : null;
    }
    
    @Override
@@ -113,9 +112,9 @@ public class SmallChestBlock extends ChestBlock implements Waterloggable {
       if (ChestBlock.isChestBlocked(world, pos)) {
          return ActionResult.success(world.isClient);
       }
+      
       if (state.get(CHEST_TYPE) == ChestType.SINGLE) {
-         player.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerEntity) -> new SmallChestScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos), (Inventory) world.getBlockEntity(pos) /* block entity to inventory is like a magic trick */),
-                                                                      Text.of("Small Chest")));
+         player.openHandledScreen(new SimpleNamedScreenHandlerFactory((syncId, inventory, playerEntity) -> new SmallChestScreenHandler(syncId, inventory, ScreenHandlerContext.create(world, pos), (Inventory) world.getBlockEntity(pos) /* block entity to inventory is like a magic trick */), Text.of("Small Chest")));
       } else {
          player.openHandledScreen(createScreenHandlerFactory(state, world, pos));
       }
