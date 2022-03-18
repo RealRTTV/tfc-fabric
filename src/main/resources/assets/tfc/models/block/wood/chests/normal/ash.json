@@ -1,0 +1,6 @@
+{
+  "parent": "tfc:block/template/chest",
+  "textures": {
+    "texture": "tfc:block/wood/chests/normal/ash"
+  }
+}

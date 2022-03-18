@@ -1,9 +1,11 @@
 {
   "replace": false,
   "values": [
-    "tfc:wood/chests/oak",
-    "tfc:wood/chests/birch",
     "tfc:wood/chests/acacia",
+    "tfc:wood/chests/ash",
+    "tfc:wood/chests/birch",
+    "tfc:wood/chests/kapok",
+    "tfc:wood/chests/oak",
     "tfc:wood/chests/spruce"
   ]
 }

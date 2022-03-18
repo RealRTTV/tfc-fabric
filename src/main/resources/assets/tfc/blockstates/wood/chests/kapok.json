@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "facing=north,type=single": {
+      "model": "tfc:block/wood/chests/normal/kapok",
+      "y": 0
+    },
+    "facing=east,type=single": {
+      "model": "tfc:block/wood/chests/normal/kapok",
+      "y": 90
+    },
+    "facing=south,type=single": {
+      "model": "tfc:block/wood/chests/normal/kapok",
+      "y": 180
+    },
+    "facing=west,type=single": {
+      "model": "tfc:block/wood/chests/normal/kapok",
+      "y": 270
+    },
+    "facing=north,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/kapok",
+      "y": 0
+    },
+    "facing=east,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/kapok",
+      "y": 90
+    },
+    "facing=south,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/kapok",
+      "y": 180
+    },
+    "facing=west,type=left": {
+      "model": "tfc:block/wood/chests/normal_left/kapok",
+      "y": 270
+    },
+    "facing=north,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/kapok",
+      "y": 0
+    },
+    "facing=east,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/kapok",
+      "y": 90
+    },
+    "facing=south,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/kapok",
+      "y": 180
+    },
+    "facing=west,type=right": {
+      "model": "tfc:block/wood/chests/normal_right/kapok",
+      "y": 270
+    }
+  }
+}

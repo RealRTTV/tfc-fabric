@@ -39,7 +39,6 @@ public class SmallChestBlockEntity extends ChestBlockEntity implements ChestAnim
       }
    
       protected void onViewerCountUpdate(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-         System.out.println("VCU: " + newViewerCount);
          SmallChestBlockEntity.this.onInvOpenOrClose(world, pos, state, oldViewerCount, newViewerCount);
       }
    
@@ -95,7 +94,6 @@ public class SmallChestBlockEntity extends ChestBlockEntity implements ChestAnim
    
    @Override
    public boolean onSyncedBlockEvent(int type, int data) {
-      System.out.println("dat: " + data);
       if (type == 1) {
          this.lidAnimator.setOpen(data > 0);
          return true;
@@ -110,7 +108,6 @@ public class SmallChestBlockEntity extends ChestBlockEntity implements ChestAnim
    
    @Override
    public void onClose(PlayerEntity player) {
-      System.out.println("clos: 3");
       this.stateManager.closeContainer(player, this.world, this.pos, this.getCachedState());
    }
    
@@ -137,7 +134,6 @@ public class SmallChestBlockEntity extends ChestBlockEntity implements ChestAnim
    
    @Override
    public void onOpen(PlayerEntity player) {
-      System.out.println("open: 2");
       this.stateManager.openContainer(player, this.world, this.pos, this.getCachedState());
    }
    
@@ -161,7 +157,6 @@ public class SmallChestBlockEntity extends ChestBlockEntity implements ChestAnim
    
    @Override
    protected void onInvOpenOrClose(World world, BlockPos pos, BlockState state, int oldViewerCount, int newViewerCount) {
-      System.out.println("nVC: " + newViewerCount);
       world.addSyncedBlockEvent(pos, state.getBlock(), 1, newViewerCount);
    }
 }

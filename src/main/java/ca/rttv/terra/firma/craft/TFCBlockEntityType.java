@@ -6,8 +6,15 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.math.BlockPos;
 
 public class TFCBlockEntityType {
+   public static final BlockEntityType<SmallChestBlockEntity> SMALL_CHEST = BlockEntityType.create("tfc:blockentities/chest",
+                                                                                                   BlockEntityType.Builder.create((BlockPos pos, BlockState state) -> new SmallChestBlockEntity(pos, state, "oak"),
+                                                                                                                                  TFCBlocks.ACACIA_CHEST,
+                                                                                                                                  TFCBlocks.ASH_CHEST,
+                                                                                                                                  TFCBlocks.BIRCH_CHEST,
+                                                                                                                                  TFCBlocks.KAPOK_CHEST,
+                                                                                                                                  TFCBlocks.OAK_CHEST,
+                                                                                                                                  TFCBlocks.SPRUCE_CHEST));
    
-   public static final BlockEntityType<SmallChestBlockEntity> SMALL_CHEST = BlockEntityType.create("tfc:chest", BlockEntityType.Builder.create((BlockPos pos, BlockState state) -> new SmallChestBlockEntity(pos, state, "oak"), TFCBlocks.OAK_CHEST, TFCBlocks.SPRUCE_CHEST, TFCBlocks.BIRCH_CHEST, TFCBlocks.ACACIA_CHEST));
    
    @SuppressWarnings( "ResultOfMethodCallIgnored" )
    public static void init() {
